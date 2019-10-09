@@ -1,10 +1,11 @@
 console.log('%c HI', 'color: firebrick')
 document.addEventListener('DOMContentLoaded', function() {
-
-   let dropDown = document.getElementById('breed-dropdown');
-   dropDown.addEventListener('change', function(){
+    fetchDogs()
+    let dropDown = document.getElementById('breed-dropdown');
+    dropDown.addEventListener('change', function(){
        fetchBreeds();
-   })
+    })
+// dropDown.addEventListener('change', fetchBreeds)
   })
 
 function fetchDogs(){
@@ -15,6 +16,9 @@ function fetchDogs(){
 
 function renderDogs(json){
     let dogContainer = document.getElementById('dog-image-container');
+    while (dogContainer.firstChild) {
+        dogContainer.firstChild.remove();
+    }
     json.message.forEach(dog =>{
         let dogItem = document.createElement('img');
         dogItem.src = `${dog}`
